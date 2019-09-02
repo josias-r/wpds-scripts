@@ -1,0 +1,15 @@
+{
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "no-var": 1
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  }
+}

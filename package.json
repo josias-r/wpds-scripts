@@ -1,0 +1,37 @@
+{
+  "name": "@josias-r/wptb-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for wptb",
+  "main": "wptb-scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josias-r/wptb-scripts.git"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-dev-server",
+    "wptb"
+  ],
+  "author": "Josias Ribi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josias-r/wptb-scripts/issues"
+  },
+  "homepage": "https://github.com/josias-r/wptb-scripts#readme",
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
