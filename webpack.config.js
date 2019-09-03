@@ -1,13 +1,14 @@
 const path = require("path");
-
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const chalk = require("chalk");
 
-const PUBLIC_PATH =
-  process.env.PUBLIC_PATH ||
-  `/wp-content/themes/${path.basename(process.cwd())}`;
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
+const PROXY = process.env.PROXY;
+const PUBLIC_PATH = process.env.PUBLIC_PATH;
 
-console.log(`PUBLIC_PATH is set to >${PUBLIC_PATH}<`);
+console.log(`>${chalk.red(PORT, HOST, PROXY, PUBLIC_PATH)}<`);
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -33,9 +34,9 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: require.resolve("babel-loader"),
           options: {
-            presets: ["@babel/preset-env"]
+            presets: [require.resolve("@babel/preset-env")]
           }
         }
       },
@@ -43,7 +44,7 @@ module.exports = {
         test: /\.scss$/,
         exclude: /(node_modules|bower_components)/,
         use: [
-          "style-loader",
+          require.resolve("style-loader"),
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
@@ -51,25 +52,30 @@ module.exports = {
             }
           },
           {
-            loader: "css-loader",
+            loader: require.resolve("css-loader"),
             options: {
               importLoaders: 2,
               sourceMap: true
             }
           },
           {
-            loader: "postcss-loader",
+            loader: require.resolve("postcss-loader"),
             options: {
-              sourceMap: true
+              sourceMap: true,
+              plugins: () => [
+                require("postcss-preset-env")(),
+                require("autoprefixer")(),
+                require("cssnano")()
+              ]
             }
           },
-          "sass-loader"
+          require.resolve("sass-loader")
         ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "file-loader",
+        loader: require.resolve("file-loader"),
         options: {
           name: "[name].[ext]",
           outputPath: "fonts"

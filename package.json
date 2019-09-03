@@ -2,10 +2,11 @@
   "name": "@josias-r/wptb-scripts",
   "version": "1.0.0",
   "description": "Scripts for wptb",
-  "main": "wptb-scripts.js",
+  "bin": {
+    "wptb-scripts": "./bin/wptb-scripts.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint wptb-scripts.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -34,9 +35,16 @@
     "babel-loader": "^8.0.6",
     "chalk": "^2.4.2",
     "chokidar": "^3.0.2",
+    "css-loader": "^3.2.0",
+    "cssnano": "^4.1.10",
+    "file-loader": "^4.2.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "minimist": "^1.2.0",
+    "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",

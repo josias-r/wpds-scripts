@@ -10,17 +10,14 @@ process.on("unhandledRejection", err => {
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 const zlib = require("zlib");
-const path = require("path");
 const chokidar = require("chokidar");
 const chalk = require("chalk");
 const config = require("../webpack.config");
 
-const PORT = parseInt(process.env.PORT, 10) || 8082;
-const HOST = process.env.HOST || "0.0.0.0";
-const PROXY = process.env.PROXY || "http://localhost:8000";
-const PUBLIC_PATH =
-  process.env.PUBLIC_PATH ||
-  `/wp-content/themes/${path.basename(process.cwd())}`;
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
+const PROXY = process.env.PROXY;
+const PUBLIC_PATH = process.env.PUBLIC_PATH;
 
 const proxyRes = (proxyRes, req, res) => {
   // catch body data stream
@@ -70,7 +67,7 @@ const proxyRes = (proxyRes, req, res) => {
 };
 
 const server = new WebpackDevServer(webpack(config), {
-  // noInfo: true,
+  noInfo: true,
   before: (app, server) => {
     // watch PHP files
     const files = [`${process.cwd()}/**/*.php`];
@@ -93,7 +90,7 @@ const server = new WebpackDevServer(webpack(config), {
   proxy: {
     "**": {
       selfHandleResponse: true,
-      target: PUBLIC_PATH,
+      target: PROXY,
       changeOrigin: true,
       onProxyRes: proxyRes
     }
