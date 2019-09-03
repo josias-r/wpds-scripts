@@ -1,18 +1,13 @@
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const chalk = require("chalk");
 
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
-const PROXY = process.env.PROXY;
 const PUBLIC_PATH = process.env.PUBLIC_PATH;
-
-console.log(`>${chalk.red(PORT, HOST, PROXY, PUBLIC_PATH)}<`);
+const ENTRY = process.env.ENTRY;
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: `${process.cwd()}/src/javascripts/main.js`,
+  entry: ENTRY,
   devtool: "source-map",
   output: {
     publicPath: `${PUBLIC_PATH}/assets/`,

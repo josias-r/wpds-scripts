@@ -11,10 +11,25 @@ const webpack = require("webpack");
 const config = require("../webpack.config");
 const chalk = require("chalk");
 
+const logPrefix = `[${chalk.magenta("wptb")}] `;
+
 webpack(config, (err, stats) => {
-  // Stats Object
-  if (err || stats.hasErrors()) {
-    throw "Something went wrong";
+  let status = chalk.green.bold("without any errors or warnings.");
+  if (err) {
+    console.error(chalk.red(err.stack || err));
+    if (err.details) {
+      console.error(chalk.red(err.details));
+    }
+    return;
   }
-  console.log(chalk.green("Wepack has finished."));
+  const info = stats.toJson();
+  if (stats.hasErrors()) {
+    console.error(chalk.red(info.errors));
+    status = chalk.red.bold("with errors.");
+  }
+  if (stats.hasWarnings()) {
+    console.warn(chalk.yellow(info.warnings));
+    status = chalk.yellow.bold("with warnings.");
+  }
+  console.log(logPrefix, chalk.green("Wepack build has finished"), status);
 });

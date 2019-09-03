@@ -14,6 +14,7 @@ const chokidar = require("chokidar");
 const chalk = require("chalk");
 const config = require("../webpack.config");
 
+const logPrefix = `[${chalk.magenta("wptb")}] `;
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 const PROXY = process.env.PROXY;
@@ -98,8 +99,11 @@ const server = new WebpackDevServer(webpack(config), {
 });
 server.listen(PORT, HOST, function(err) {
   if (err) {
-    console.log(chalk.red(err));
+    console.log(logPrefix, chalk.red(err));
   }
 
-  console.log(`Dev server is listening at localhost: ${chalk.cyan(PORT)}`);
+  console.log(
+    logPrefix,
+    `Dev server is listening at localhost: ${chalk.cyan(PORT)}`
+  );
 });
