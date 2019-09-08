@@ -71,7 +71,7 @@ const server = new WebpackDevServer(webpack(config), {
   noInfo: true,
   before: (app, server) => {
     // watch PHP files
-    const files = [`${process.cwd()}/**/*.php`];
+    const files = ["**/*.php"];
     chokidar
       .watch(files, {
         alwaysStat: true,
