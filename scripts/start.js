@@ -68,7 +68,8 @@ const proxyRes = (proxyRes, req, res) => {
 };
 
 const server = new WebpackDevServer(webpack(config), {
-  noInfo: true,
+  // noInfo: true,
+  stats: "minimal",
   before: (app, server) => {
     // watch PHP files
     const files = ["**/*.php"];
