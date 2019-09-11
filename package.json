@@ -1,6 +1,6 @@
 {
   "name": "@josias-r/wptb-scripts",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Scripts for wptb",
   "bin": {
     "wptb-scripts": "./bin/wptb-scripts.js"

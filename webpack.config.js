@@ -29,13 +29,13 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: [
-          require.resolve("eslint-loader"),
           {
             loader: require.resolve("babel-loader"),
             options: {
               presets: [require.resolve("@babel/preset-env")]
             }
-          }
+          },
+          require.resolve("eslint-loader")
         ]
       },
       {
