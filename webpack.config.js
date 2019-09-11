@@ -28,12 +28,15 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: require.resolve("babel-loader"),
-          options: {
-            presets: [require.resolve("@babel/preset-env")]
+        use: [
+          require.resolve("eslint-loader"),
+          {
+            loader: require.resolve("babel-loader"),
+            options: {
+              presets: [require.resolve("@babel/preset-env")]
+            }
           }
-        }
+        ]
       },
       {
         test: /\.scss$/,
@@ -58,8 +61,8 @@ module.exports = {
             options: {
               sourceMap: true,
               plugins: () => [
+                require("postcss-import")(),
                 require("postcss-preset-env")(),
-                require("autoprefixer")(),
                 require("cssnano")()
               ]
             }
