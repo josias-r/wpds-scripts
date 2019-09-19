@@ -9,10 +9,24 @@ const path = require("path");
 const chalk = require("chalk");
 
 const args = require("minimist")(process.argv.slice(2));
-const logPrefix = `[${chalk.magenta("wptb")}] `;
+const logPrefix = `[${chalk.magenta("wptb")}]`;
 
-process.env.ENTRY = args.e ||
-  args.entry || [`${process.cwd()}/src/javascripts/main.js`];
+let filePaths = args.e ||
+  args.entryFiles || [`${process.cwd()}/src/javascripts/main.js`];
+if (typeof filePaths === "string") {
+  filePaths = [filePaths];
+}
+
+process.env.FILES = filePaths.map(p => {
+  console.log(
+    `${logPrefix}[${chalk.cyan("loading")}]`,
+    p.replace(process.cwd(), "")
+  );
+  if (!path.isAbsolute(p)) {
+    p = path.resolve(process.cwd(), p);
+  }
+  return p;
+});
 process.env.PORT = parseInt(args.p || args.port, 10) || 8080;
 process.env.HOST = args.h || args.host || "localhost";
 process.env.PROXY = args.P || args.proxy || "http://localhost:8000";

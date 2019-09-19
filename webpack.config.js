@@ -3,16 +3,27 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const PUBLIC_PATH = process.env.PUBLIC_PATH;
-const ENTRY = process.env.ENTRY;
+const files = process.env.FILES.split(",");
+
+const filesToObj = files => {
+  const rv = {};
+  for (let i = 0; i < files.length; ++i) {
+    const basename = path.basename(files[i]).replace(/\.[^/.]+$/, "");
+    rv[basename] = files[i];
+  }
+  return rv;
+};
+
+const entryPoints = filesToObj(files);
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: ENTRY,
+  entry: entryPoints,
   devtool: "source-map",
   output: {
     publicPath: `${PUBLIC_PATH}/assets/`,
     path: path.resolve(process.cwd(), "assets"),
-    filename: "main.bundle.js"
+    filename: "[name].bundle.js"
   },
   optimization: {
     minimizer: [

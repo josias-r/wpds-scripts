@@ -11,7 +11,7 @@ const webpack = require("webpack");
 const config = require("../webpack.config");
 const chalk = require("chalk");
 
-const logPrefix = `[${chalk.magenta("wptb")}] `;
+const logPrefix = `[${chalk.magenta("wptb")}]`;
 
 webpack(config, (err, stats) => {
   let status = chalk.green.bold("without any errors or warnings.");
