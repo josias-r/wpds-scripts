@@ -1,3 +1,3 @@
-# wptb-scripts
+# wpds-scripts
 
-Please refer to [wp-theme-boilerplate](https://github.com/josias-r/wp-theme-boilerplate).
+Documentation coming soon for more information please refer to [wp-theme-boilerplate](https://github.com/josias-r/wp-theme-boilerplate).
