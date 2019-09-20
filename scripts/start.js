@@ -14,7 +14,7 @@ const chokidar = require("chokidar");
 const chalk = require("chalk");
 const config = require("../webpack.config");
 
-const logPrefix = `[${chalk.magenta("wptb")}]`;
+const logPrefix = `[${chalk.magenta("wpds")}]`;
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 const PROXY = process.env.PROXY;
