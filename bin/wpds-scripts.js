@@ -9,7 +9,7 @@ const path = require("path");
 const chalk = require("chalk");
 
 const args = require("minimist")(process.argv.slice(2));
-const logPrefix = `[${chalk.magenta("wptb")}]`;
+const logPrefix = `[${chalk.magenta("wpds")}]`;
 
 let filePaths = args.e ||
   args.entryFiles || [`${process.cwd()}/src/javascripts/main.js`];
@@ -44,6 +44,6 @@ switch (script) {
   }
   default:
     console.log(logPrefix, 'Unknown script "' + script + '".');
-    console.log(logPrefix, "Perhaps you need to update wptb-scripts?");
+    console.log(logPrefix, "Perhaps you need to update wpds-scripts?");
     break;
 }
