@@ -1,4 +1,5 @@
 const path = require("path");
+const externals = require("./externals");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -20,6 +21,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: entryPoints,
   devtool: "source-map",
+  externals: externals,
   output: {
     publicPath: `${PUBLIC_PATH}/assets/`,
     path: path.resolve(process.cwd(), "assets"),

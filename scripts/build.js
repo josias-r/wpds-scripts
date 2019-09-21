@@ -8,10 +8,10 @@ process.on("unhandledRejection", err => {
 });
 
 const webpack = require("webpack");
-const config = require("../webpack.config");
+const config = require("../config/webpack.config");
 const chalk = require("chalk");
 
-const logPrefix = `[${chalk.magenta("wpds")}]`;
+const LOG_PREFIX = process.env.LOG_PREFIX;
 
 webpack(config, (err, stats) => {
   let status = chalk.green.bold("without any errors or warnings.");
@@ -31,5 +31,5 @@ webpack(config, (err, stats) => {
     console.error(chalk.red(info.errors));
     status = chalk.red.bold("with errors.");
   }
-  console.log(logPrefix, chalk.green("Wepack build has finished"), status);
+  console.log(LOG_PREFIX, chalk.green("Wepack build has finished"), status);
 });

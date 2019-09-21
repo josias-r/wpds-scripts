@@ -12,9 +12,9 @@ const WebpackDevServer = require("webpack-dev-server");
 const zlib = require("zlib");
 const chokidar = require("chokidar");
 const chalk = require("chalk");
-const config = require("../webpack.config");
+const config = require("../config/webpack.config");
 
-const logPrefix = `[${chalk.magenta("wpds")}]`;
+const LOG_PREFIX = process.env.LOG_PREFIX;
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 const PROXY = process.env.PROXY;
@@ -100,11 +100,11 @@ const server = new WebpackDevServer(webpack(config), {
 });
 server.listen(PORT, HOST, function(err) {
   if (err) {
-    console.log(logPrefix, chalk.red(err));
+    console.log(LOG_PREFIX, chalk.red(err));
   }
 
   console.log(
-    logPrefix,
+    LOG_PREFIX,
     `Dev server is listening at localhost: ${chalk.cyan(PORT)}`
   );
 });

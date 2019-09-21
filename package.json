@@ -1,6 +1,6 @@
 {
   "name": "@josias-r/wpds-scripts",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "WordPress Dev Server scripts",
   "bin": {
     "wpds-scripts": "./bin/wpds-scripts.js"
