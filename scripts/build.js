@@ -23,13 +23,13 @@ webpack(config, (err, stats) => {
     return;
   }
   const info = stats.toJson();
-  if (stats.hasErrors()) {
-    console.error(chalk.red(info.errors));
-    status = chalk.red.bold("with errors.");
-  }
   if (stats.hasWarnings()) {
     console.warn(chalk.yellow(info.warnings));
     status = chalk.yellow.bold("with warnings.");
+  }
+  if (stats.hasErrors()) {
+    console.error(chalk.red(info.errors));
+    status = chalk.red.bold("with errors.");
   }
   console.log(logPrefix, chalk.green("Wepack build has finished"), status);
 });
