@@ -14,7 +14,11 @@ let config = {
   host: "localhost",
   proxy: "http://localhost:8000",
   publicPath: `/wp-content/themes/${path.basename(process.cwd())}`,
-  entryFiles: [`${process.cwd()}/src/javascripts/main.js`]
+  entryFiles: [`${process.cwd()}/src/javascripts/main.js`],
+  customRules: [],
+  customExternals: [],
+  customWebpackConfig: false,
+  customWebpackDevConfig: false
 };
 
 // merge custom config

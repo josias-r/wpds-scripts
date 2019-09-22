@@ -12,7 +12,8 @@ const WebpackDevServer = require("webpack-dev-server");
 const zlib = require("zlib");
 const chokidar = require("chokidar");
 const chalk = require("chalk");
-const config = require("../config/webpack.config");
+const config = require("../config/wpds-scripts.config");
+const webpackConfig = require("../config/webpack.config");
 
 const LOG_PREFIX = process.env.LOG_PREFIX;
 const PORT = process.env.PORT;
@@ -67,7 +68,7 @@ const proxyRes = (proxyRes, req, res) => {
   });
 };
 
-const server = new WebpackDevServer(webpack(config), {
+let devServerConfig = {
   // noInfo: true,
   stats: "minimal",
   before: (app, server) => {
@@ -86,7 +87,6 @@ const server = new WebpackDevServer(webpack(config), {
       });
   },
   publicPath: `${PUBLIC_PATH}/assets/`,
-  // contentBase: path.resolve(process.cwd(), "src"),
   hot: true,
   compress: true,
   proxy: {
@@ -97,7 +97,24 @@ const server = new WebpackDevServer(webpack(config), {
       onProxyRes: proxyRes
     }
   }
-});
+};
+
+if (config.customWebpackConfig) {
+  console.log(
+    LOG_PREFIX,
+    chalk.yellow(
+      "Careful, you are overriding the default webpack dev server config!"
+    )
+  );
+  console.log(LOG_PREFIX, chalk.yellow("This can easily break the process!"));
+  devServerConfig = { ...devServerConfig, ...config.customWebpackDevConfig };
+}
+
+if (config.verbose) {
+  console.log(LOG_PREFIX, "Final webpack dev server config:", devServerConfig);
+}
+
+const server = new WebpackDevServer(webpack(webpackConfig), devServerConfig);
 server.listen(PORT, HOST, function(err) {
   if (err) {
     console.log(LOG_PREFIX, chalk.red(err));

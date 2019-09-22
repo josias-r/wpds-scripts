@@ -1,27 +1,32 @@
 const path = require("path");
-const externals = require("./externals");
+const chalk = require("chalk");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const externals = require("./externals");
+const config = require("./wpds-scripts.config");
+
 const PUBLIC_PATH = process.env.PUBLIC_PATH;
-const files = process.env.FILES.split(",");
+const LOG_PREFIX = process.env.LOG_PREFIX;
 
-const filesToObj = files => {
-  const rv = {};
-  for (let i = 0; i < files.length; ++i) {
-    const basename = path.basename(files[i]).replace(/\.[^/.]+$/, "");
-    rv[basename] = files[i];
-  }
-  return rv;
-};
-
-const entryPoints = filesToObj(files);
-
-module.exports = {
+let webpackConfig = {
   mode: process.env.NODE_ENV,
-  entry: entryPoints,
+  entry: () => {
+    const files = config.entryFiles;
+    const filesObj = {};
+    for (let i = 0; i < files.length; ++i) {
+      const basename = path
+        .basename(files[i])
+        // remove file extension
+        .replace(/\.[^/.]+$/, "")
+        // only keep letters
+        .replace(/[^a-zA-Z]+/g, "");
+      filesObj[basename] = files[i];
+    }
+    return filesObj;
+  },
   devtool: "source-map",
-  externals: externals,
+  externals: externals.concat(config.customExternals),
   output: {
     publicPath: `${PUBLIC_PATH}/assets/`,
     path: path.resolve(process.cwd(), "assets"),
@@ -92,6 +97,21 @@ module.exports = {
           outputPath: "fonts"
         }
       }
-    ]
+    ].concat(config.customRules)
   }
 };
+
+if (config.customWebpackConfig) {
+  console.log(
+    LOG_PREFIX,
+    chalk.yellow("Careful, you are overriding the default webpack config!")
+  );
+  console.log(LOG_PREFIX, chalk.yellow("This can easily break the process!"));
+  webpackConfig = { ...webpackConfig, ...config.customWebpackConfig };
+}
+
+if (config.verbose) {
+  console.log(LOG_PREFIX, "Final webpack config:", webpackConfig);
+}
+
+module.exports = webpackConfig;
