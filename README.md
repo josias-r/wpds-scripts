@@ -2,6 +2,17 @@
 
 WordPress development made easy.
 
+### Features
+
+- **SCSS**: Modular CSS with variables and functions
+- **Modern JavaScript**: Write Javascript using the latest syntax.
+- **Modular JavaScript**: Split your JS files into multiple module files for better organization and import NPM libraries.
+- **HMR**: Watch your changes live getting hot reloaded while developing
+- **Browser support**: With the help of Babel and Browserslist everything will be compiled to support old Browsers
+- **Linters**: [Prettier](https://prettier.io/), [ESLint](https://eslint.org/) and [stylelint](https://stylelint.io/) will help you while developing. (Make sure you have the corresponding packages installed for your editor)
+  > Note: You should install the corresponding packages for your Editor to make full use of this feature.
+- **Customizable**: You have a lot of options you can configure. [see configuration](#cli-configuration)
+
 ### CLI Configuration
 
 - `-p` or `--port`: _default_: `8080`
@@ -45,6 +56,8 @@ module.exports = {
 ```
 
 > Note: The CLI parameters will always override configuration from your `wpds-scripts.config.js` file.
+
+> Note: wpds-scripts will use your `.babelrc`, `.eslintrc` and `.stylelintrc` when those files are present.
 
 ## Donate
 
