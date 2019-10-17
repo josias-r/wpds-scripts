@@ -11,6 +11,7 @@ WordPress development made easy.
 - **Browser support**: With the help of Babel and Browserslist everything will be compiled to support old Browsers
 - **Linters**: [Prettier](https://prettier.io/), [ESLint](https://eslint.org/) and [stylelint](https://stylelint.io/) will help you while developing. (Make sure you have the corresponding packages installed for your editor)
   > Note: You should install the corresponding packages for your Editor to make full use of this feature.
+
   > Note: I'm not following the WordPress Coding Standards for JS and CSS out of preference (I think they are outdated and rather use the recommended prettier/eslint configurations). You can always change that by updating the linter rc files.
 - **Customizable**: You have a lot of options you can configure. [see configuration](#cli-configuration)
 
