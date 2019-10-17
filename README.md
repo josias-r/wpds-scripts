@@ -15,6 +15,8 @@ WordPress development made easy.
   > Note: I'm not following the WordPress Coding Standards for JS and CSS out of preference (I think they are outdated and rather use the recommended prettier/eslint configurations). You can always change that by updating the linter rc files.
 - **Customizable**: You have a lot of options you can configure. [see configuration](#cli-configuration)
 
+**Pro Tip:** Since wpds-scripts will open a proxy, you can even work on a webpage that is already online, as long as you are just changing static files, like JS and CSS.
+
 ### CLI Configuration
 
 - `-p` or `--port`: _default_: `8080`
