@@ -1,6 +1,6 @@
-# WordPress Dev Server
+# WordPack Dev Server
 
-WordPress development made easy.
+Development with WordPress made easy.
 
 ### Features
 

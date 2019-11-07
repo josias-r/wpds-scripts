@@ -1,7 +1,7 @@
 {
   "name": "@josias-r/wpds-scripts",
   "version": "3.1.1",
-  "description": "WordPress Dev Server scripts",
+  "description": "WordPack Dev Server scripts",
   "bin": {
     "wpds-scripts": "./bin/wpds-scripts.js"
   },
@@ -16,7 +16,8 @@
     "webpack",
     "webpack-dev-server",
     "wpds",
-    "wordpress-dev-server"
+    "wordpress",
+    "wordpack-dev-server"
   ],
   "author": "Josias Ribi",
   "license": "ISC",
