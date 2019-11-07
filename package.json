@@ -17,7 +17,8 @@
     "webpack-dev-server",
     "wpds",
     "wordpress",
-    "wordpack-dev-server"
+    "wordpack-dev-server",
+    "hrm"
   ],
   "author": "Josias Ribi",
   "license": "ISC",
