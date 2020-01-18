@@ -1,6 +1,7 @@
 const path = require("path");
 const chalk = require("chalk");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const { merge } = require("lodash");
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const externals = require("./externals");
@@ -33,12 +34,8 @@ let webpackConfig = {
     filename: "[name].bundle.js"
   },
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        parallel: true,
-        sourceMap: true
-      })
-    ]
+    minimize: true,
+    minimizer: [new TerserPlugin()]
   },
   plugins: [new MiniCssExtractPlugin({})],
   module: {
@@ -107,7 +104,7 @@ if (config.customWebpackConfig) {
     chalk.yellow("Careful, you are overriding the default webpack config!")
   );
   console.log(LOG_PREFIX, chalk.yellow("This can easily break the process!"));
-  webpackConfig = { ...webpackConfig, ...config.customWebpackConfig };
+  webpackConfig = merge(webpackConfig, config.customWebpackConfig);
 }
 
 if (config.verbose) {
