@@ -12,6 +12,7 @@ const WebpackDevServer = require("webpack-dev-server");
 const zlib = require("zlib");
 const chokidar = require("chokidar");
 const chalk = require("chalk");
+const { merge } = require("lodash");
 const config = require("../config/wpds-scripts.config");
 const webpackConfig = require("../config/webpack.config");
 
@@ -99,7 +100,7 @@ let devServerConfig = {
   }
 };
 
-if (config.customWebpackConfig) {
+if (config.customWebpackDevConfig) {
   console.log(
     LOG_PREFIX,
     chalk.yellow(
@@ -107,7 +108,7 @@ if (config.customWebpackConfig) {
     )
   );
   console.log(LOG_PREFIX, chalk.yellow("This can easily break the process!"));
-  devServerConfig = { ...devServerConfig, ...config.customWebpackDevConfig };
+  devServerConfig = merge(devServerConfig, config.customWebpackDevConfig);
 }
 
 if (config.verbose) {

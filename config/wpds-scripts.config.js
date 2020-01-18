@@ -1,4 +1,5 @@
 const path = require("path");
+const { merge } = require("lodash");
 
 let customConfig;
 try {
@@ -23,7 +24,7 @@ let config = {
 
 // merge custom config
 if (customConfig) {
-  config = { ...config, ...customConfig };
+  config = merge(config, customConfig);
 }
 
 module.exports = config;
