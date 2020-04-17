@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use-strict";
 
-process.on("unhandledRejection", err => {
+process.on("unhandledRejection", (err) => {
   throw err;
 });
 
@@ -19,8 +19,8 @@ if (config.verbose) {
     ...config,
     ...{
       customWebpackConfig: "hidden from console",
-      customWebpackDevConfig: "hidden from console"
-    }
+      customWebpackDevConfig: "hidden from console",
+    },
   };
   console.log(LOG_PREFIX, "Final configuration:", logConfig);
 }

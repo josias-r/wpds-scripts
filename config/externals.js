@@ -1,7 +1,7 @@
 const LOG_PREFIX = process.env.LOG_PREFIX;
 const config = require("./wpds-scripts.config");
 
-const camelCaseDash = string =>
+const camelCaseDash = (string) =>
   string.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
 
 const externals = [
@@ -18,8 +18,8 @@ const externals = [
   },
   {
     wp: "wp",
-    lodash: "lodash"
-  }
+    lodash: "lodash",
+  },
 ];
 
 module.exports = externals;

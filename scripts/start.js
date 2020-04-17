@@ -3,7 +3,7 @@
 process.env.BABEL_ENV = "development";
 process.env.NODE_ENV = "development";
 
-process.on("unhandledRejection", err => {
+process.on("unhandledRejection", (err) => {
   throw err;
 });
 
@@ -25,7 +25,7 @@ const PUBLIC_PATH = process.env.PUBLIC_PATH;
 const proxyRes = (proxyRes, req, res) => {
   // catch body data stream
   let body = new Buffer.from("");
-  proxyRes.on("data", data => {
+  proxyRes.on("data", (data) => {
     body = Buffer.concat([body, data]);
   });
   proxyRes.on("end", () => {
@@ -59,7 +59,7 @@ const proxyRes = (proxyRes, req, res) => {
           res.writeHead(proxyRes.statusCode, proxyRes.headers);
           res.end(body);
         })
-        .catch(err => {
+        .catch((err) => {
           res.end(err);
         });
     } else {
@@ -81,7 +81,7 @@ let devServerConfig = {
         atomic: false,
         followSymlinks: false,
         ignoreInitial: true,
-        ignorePermissionErrors: true
+        ignorePermissionErrors: true,
       })
       .on("all", () => {
         server.sockWrite(server.sockets, "content-changed");
@@ -95,9 +95,9 @@ let devServerConfig = {
       selfHandleResponse: true,
       target: PROXY,
       changeOrigin: true,
-      onProxyRes: proxyRes
-    }
-  }
+      onProxyRes: proxyRes,
+    },
+  },
 };
 
 if (config.customWebpackDevConfig) {
@@ -116,7 +116,7 @@ if (config.verbose) {
 }
 
 const server = new WebpackDevServer(webpack(webpackConfig), devServerConfig);
-server.listen(PORT, HOST, function(err) {
+server.listen(PORT, HOST, function (err) {
   if (err) {
     console.log(LOG_PREFIX, chalk.red(err));
   }

@@ -19,7 +19,7 @@ let config = {
   customRules: [],
   customExternals: [],
   customWebpackConfig: false,
-  customWebpackDevConfig: false
+  customWebpackDevConfig: false,
 };
 
 // merge custom config

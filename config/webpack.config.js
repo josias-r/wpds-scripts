@@ -31,11 +31,11 @@ let webpackConfig = {
   output: {
     publicPath: `${PUBLIC_PATH}/assets/`,
     path: path.resolve(process.cwd(), "assets"),
-    filename: "[name].bundle.js"
+    filename: "[name].bundle.js",
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()]
+    minimizer: [new TerserPlugin()],
   },
   plugins: [new MiniCssExtractPlugin({})],
   module: {
@@ -47,11 +47,11 @@ let webpackConfig = {
           {
             loader: require.resolve("babel-loader"),
             options: {
-              presets: [require.resolve("@babel/preset-env")]
-            }
+              presets: [require.resolve("@babel/preset-env")],
+            },
           },
-          require.resolve("eslint-loader")
-        ]
+          require.resolve("eslint-loader"),
+        ],
       },
       {
         test: /\.scss$/,
@@ -61,15 +61,15 @@ let webpackConfig = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV !== "production"
-            }
+              hmr: process.env.NODE_ENV !== "production",
+            },
           },
           {
             loader: require.resolve("css-loader"),
             options: {
               importLoaders: 2,
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
             loader: require.resolve("postcss-loader"),
@@ -78,12 +78,12 @@ let webpackConfig = {
               plugins: () => [
                 require("postcss-import")(),
                 require("postcss-preset-env")(),
-                require("cssnano")()
-              ]
-            }
+                require("cssnano")(),
+              ],
+            },
           },
-          require.resolve("sass-loader")
-        ]
+          require.resolve("sass-loader"),
+        ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
@@ -91,11 +91,11 @@ let webpackConfig = {
         loader: require.resolve("file-loader"),
         options: {
           name: "[name].[ext]",
-          outputPath: "fonts"
-        }
-      }
-    ].concat(config.customRules)
-  }
+          outputPath: "fonts",
+        },
+      },
+    ].concat(config.customRules),
+  },
 };
 
 if (config.customWebpackConfig) {
