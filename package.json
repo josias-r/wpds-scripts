@@ -1,6 +1,6 @@
 {
   "name": "@josias-r/wpds-scripts",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "WordPack Dev Server scripts",
   "bin": {
     "wpds-scripts": "./bin/wpds-scripts.js"
